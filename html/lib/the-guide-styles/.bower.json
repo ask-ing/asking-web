@@ -1,0 +1,18 @@
+{
+  "name": "the-guide-styles",
+  "main": "css/the-guide-styles.css",
+  "private": true,
+  "ignore": [],
+  "dependencies": {
+    "respond": "ssh://git@stash.europe.intranet:7999/bow/respond.git#1.4.2"
+  },
+  "_release": "07e1222ac5",
+  "_resolution": {
+    "type": "branch",
+    "branch": "develop",
+    "commit": "07e1222ac5ed09e0db8a778fff8d200e40498f36"
+  },
+  "_source": "ssh://git@stash.europe.intranet:7999/bow/bower-the-guide-styles.git",
+  "_target": "develop",
+  "_originalSource": "ssh://git@stash.europe.intranet:7999/bow/bower-the-guide-styles.git"
+}
