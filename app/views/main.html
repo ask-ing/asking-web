@@ -1,19 +1,21 @@
 <div class="jumbotron">
   <h1>Ask ING</h1>
-  <p>
-    Wat kan ik voor u betekenen?
-  </p>
-  <div ng-repeat="answer in answers">
+  <div ng-repeat="answer in model.answers">
     <p>
-      <em>{{answer.question}}</em>
+      {{answer.question}}
     </p>
-    <p class="lead">
-      {{answer.answer}}
+    <p>
+      <em>{{answer.userInput}}</em>
     </p>
   </div>
-  <p><input ng-model="model.question" /></p>
-  <p><a class="btn btn-lg btn-success" ng-click="ask()">Hup!<span class="glyphicon glyphicon-ok"></span></a></p>
-</div>
-
-<div class="row marketing">
+  <div ng-repeat="question in model.questions">
+    <p>
+      {{question.question}}
+    </p>
+    <p><input ng-model="question.userInput" /></p>
+  </div>
+  <p>
+    <a class="btn btn-lg btn-success" ng-click="reset()">Opnieuw!</a>
+    <a class="btn btn-lg btn-success" ng-click="ask()">Hup!<span class="glyphicon glyphicon-ok"></span></a>
+  </p>
 </div>

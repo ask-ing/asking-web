@@ -12,12 +12,31 @@ angular.module('askingWebApp')
   .controller('MainCtrl', ['$scope', '$resource', 'askingUrl', function ($scope, $resource, askingUrl) {
     var askingResource = $resource(askingUrl);
 
-    $scope.answers = [];
+    $scope.reset = function() {
+      $scope.model = {
+        questions: [
+          {
+            question: 'Wat kan ik voor u betekenen?',
+            parameterName: 'query',
+            userInput: ''
+          }
+        ],
+        answers: []
+      }
+    };
 
     $scope.ask = function() {
-      var question = $scope.model.question;
-      askingResource.save(null, $.param({query: question}), function(response) {
-        $scope.answers.push({question: question, answer: response.answer});
-      });
+      if ($scope.model.userInput) {
+        var question = $scope.model.questions.shift();
+        askingResource.save(null, $.param(question.parameterName, question.userInput), function(response) {
+          angular.each(response.questions, function(question) {
+
+          });
+          $scope.model.answers.push(question);
+          $scope.model.question = '';
+        });
+      }
     };
+
+    $scope.reset();
   }]);
