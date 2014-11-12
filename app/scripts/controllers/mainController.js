@@ -23,6 +23,9 @@ angular.module('askingWebApp')
 
         // Add the new questions to the question queue
         $scope.model.questions = response.questions;
+        if (response.contextUrl) {
+          askingResource = $resource(response.contextUrl);
+        }
 
       } else if (response.contextUrl) {
         $resource(response.contextUrl).get(newQuestionsProcessor);
@@ -43,11 +46,21 @@ angular.module('askingWebApp')
     };
 
     $scope.ask = function() {
-      var params = {},
-        question = $scope.model.questions[0];
-      if (question && question.userInput) {
-        params[question.parameterName || 'query'] = question.userInput;
-        askingResource.save(null, $.param(params), newQuestionsProcessor);
+      var questions = $scope.model.questions,
+        validatedParams = {},
+        warning = false;
+
+      angular.forEach(questions, function(question) {
+        question.warning = question.regexForAnswerGivenByCustomer && !/.+/.match(question.userInput);
+        if (!question.warning) {
+          validatedParams[question.parameterName || 'query'] = question.userInput;
+        } else {
+          warning = true;
+        }
+      });
+
+      if (!warning) {
+        askingResource.save(null, $.param(validatedParams), newQuestionsProcessor);
       }
     };
 
