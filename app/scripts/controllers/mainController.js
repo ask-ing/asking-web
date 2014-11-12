@@ -12,6 +12,20 @@ angular.module('askingWebApp')
   .controller('MainCtrl', ['$scope', '$resource', 'askingUrl', function ($scope, $resource, askingUrl) {
     var askingResource = $resource(askingUrl);
 
+    function newQuestionsProcessor(question) {
+      return function(response) {
+        if (response.questions.filter(function(q) {return !!q.question;}).length) {
+          angular.forEach(response.questions, function(newquestion) {
+            $scope.model.questions.push(newquestion);
+          });
+          $scope.model.answers.push(question);
+        } else if (response.contextUrl) {
+          console.log('get resource');
+          $resource(response.contextUrl).get(newQuestionsProcessor(question));
+        }
+      };
+    }
+
     $scope.reset = function() {
       $scope.model = {
         questions: [
@@ -26,15 +40,13 @@ angular.module('askingWebApp')
     };
 
     $scope.ask = function() {
-      if ($scope.model.userInput) {
-        var question = $scope.model.questions.shift();
-        askingResource.save(null, $.param(question.parameterName, question.userInput), function(response) {
-          angular.each(response.questions, function(question) {
-
-          });
-          $scope.model.answers.push(question);
-          $scope.model.question = '';
-        });
+      var params = {},
+        question = $scope.model.questions.shift();
+      if (question.userInput) {
+        params[question.parameterName || 'query'] = question.userInput;
+        askingResource.save(null, $.param(params), newQuestionsProcessor(question));
+      } else {
+        $scope.model.questions.unshift(question);
       }
     };
 
