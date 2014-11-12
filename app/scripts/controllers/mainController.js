@@ -1,3 +1,5 @@
+/* global $ */
+
 'use strict';
 
 /**
@@ -12,18 +14,19 @@ angular.module('askingWebApp')
   .controller('MainCtrl', ['$scope', '$resource', 'askingUrl', function ($scope, $resource, askingUrl) {
     var askingResource = $resource(askingUrl);
 
-    function newQuestionsProcessor(question) {
-      return function(response) {
-        if (response.questions.filter(function(q) {return !!q.question;}).length) {
-          angular.forEach(response.questions, function(newquestion) {
-            $scope.model.questions.push(newquestion);
-          });
+    function newQuestionsProcessor(response) {
+      if (response.questions.filter(function(q) {return !!q.question;}).length) {
+        // Move the current questions to the answers queue
+        angular.forEach($scope.model.questions, function(question) {
           $scope.model.answers.push(question);
-        } else if (response.contextUrl) {
-          console.log('get resource');
-          $resource(response.contextUrl).get(newQuestionsProcessor(question));
-        }
-      };
+        });
+
+        // Add the new questions to the question queue
+        $scope.model.questions = response.questions;
+
+      } else if (response.contextUrl) {
+        $resource(response.contextUrl).get(newQuestionsProcessor);
+      }
     }
 
     $scope.reset = function() {
@@ -36,17 +39,15 @@ angular.module('askingWebApp')
           }
         ],
         answers: []
-      }
+      };
     };
 
     $scope.ask = function() {
       var params = {},
-        question = $scope.model.questions.shift();
-      if (question.userInput) {
+        question = $scope.model.questions[0];
+      if (question && question.userInput) {
         params[question.parameterName || 'query'] = question.userInput;
-        askingResource.save(null, $.param(params), newQuestionsProcessor(question));
-      } else {
-        $scope.model.questions.unshift(question);
+        askingResource.save(null, $.param(params), newQuestionsProcessor);
       }
     };
 
