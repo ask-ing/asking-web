@@ -12,7 +12,14 @@
 angular.module('askingWebApp')
   .constant('askingUrl', 'https://asking.herokuapp.com/answer')
   .controller('MainCtrl', ['$scope', '$resource', 'askingUrl', function ($scope, $resource, askingUrl) {
-    var askingResource = $resource(askingUrl);
+    var askingResource;
+
+    function getAskingResource() {
+      if (angular.isUndefined(askingResource)) {
+        askingResource = $resource(askingUrl);
+      }
+      return askingResource;
+    }
 
     function newQuestionsProcessor(response) {
       if (response.questions.filter(function(q) {return !!q.question;}).length) {
@@ -33,16 +40,13 @@ angular.module('askingWebApp')
     }
 
     $scope.reset = function() {
-      $scope.model = {
-        questions: [
-          {
-            question: 'Wat kan ik voor u betekenen?',
-            parameterName: 'query',
-            userInput: ''
-          }
-        ],
-        answers: []
-      };
+      askingResource = undefined;
+      getAskingResource().get(function(response) {
+        $scope.model = {
+          questions: response.questions,
+          answers: []
+        };
+      });
     };
 
     $scope.ask = function() {
