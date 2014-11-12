@@ -21,17 +21,22 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="container">
+    <div>
+
+
       <div class="header">
-
         <span class="text-muted">askingWeb</h3>
+        <i class="icon icon-logo-ing"></i>
+        <i class="icon icon-logo-ing"></i>
       </div>
 
-      <div ng-view=""></div>
+      <div class="container">
+        <div ng-view=""></div>
+        </div>
 
-      <div class="footer">
+      <footer class="footer">
         <p><span ></span> from the Ask ING team</p>
-      </div>
+      </footer>
     </div>
 
 
@@ -61,7 +66,6 @@
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/mainController.js"></script>
-        <script src="scripts/controllers/about.js"></script>
         <!-- endbuild -->
 </body>
 </html>
