@@ -21,9 +21,8 @@ angular
   ])
   .config(function ($httpProvider, $routeProvider) {
     $httpProvider.defaults.useXDomain = true;
-    delete $httpProvider.defaults.headers.common['X-Requested-With'];
+    //delete $httpProvider.defaults.headers.common['X-Requested-With'];
     $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-    //delete $httpProvider.defaults.headers.post['Content-Type']
 
     $routeProvider
       .when('/', {

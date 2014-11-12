@@ -1,11 +1,17 @@
 <div class="jumbotron">
   <h1>Ask ING</h1>
-  <p class="lead">
+  <p>
     Wat kan ik voor u betekenen?
   </p>
+  <div ng-repeat="answer in answers">
+    <p>
+      <em>{{answer.question}}</em>
+    </p>
+    <p class="lead">
+      {{answer.answer}}
+    </p>
+  </div>
   <p><input ng-model="model.question" /></p>
-  <p>{{model.question}}</p>
-  <p>{{model.answer}}</p>
   <p><a class="btn btn-lg btn-success" ng-click="ask()">Hup!<span class="glyphicon glyphicon-ok"></span></a></p>
 </div>
 

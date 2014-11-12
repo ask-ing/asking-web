@@ -12,9 +12,12 @@ angular.module('askingWebApp')
   .controller('MainCtrl', ['$scope', '$resource', 'askingUrl', function ($scope, $resource, askingUrl) {
     var askingResource = $resource(askingUrl);
 
+    $scope.answers = [];
+
     $scope.ask = function() {
-      askingResource.save(null, $.param({query: $scope.model.question}), function(response) {
-        $scope.model.answer = response.answer;
+      var question = $scope.model.question;
+      askingResource.save(null, $.param({query: question}), function(response) {
+        $scope.answers.push({question: question, answer: response.answer});
       });
     };
   }]);
