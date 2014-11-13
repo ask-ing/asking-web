@@ -1,33 +1,36 @@
 <div class="h-text-center">
 
-  <div class="l-pb-2">
-    <input ng-model="question.userInput" ng-keypress="$event.keyCode == 13 && ask()" class="input l-w-100"/>
-  </div>
-  <div class="h-inline-block">
-    <a class="btn btn-md btn-primary l-mr-2" ng-click="ask()">Vraag het</a>
-    <a class="btn btn-md btn-default" ng-click="reset()">Opnieuw</a>
-  </div>
+
+
 
   <div ng-repeat="answer in model.answers">
-    <div class="panel panel-bordered">
+    <div class="panel panel-bordered h-bg-b">
+    <div class="panel-body">
       <p>
         <img src="lib/the-guide-styles/img/ing_thumb.jpeg"> {{answer.question}}</img>
       </p>
+      </div>
+      <div class="panel panel-bordered">
+      <div class="panel-body">
       <p>
         <em>{{answer.userInput}}</em>
       </p>
+      </div>
+      </div>
     </div>
   </div>
   <div ng-repeat="question in model.questions">
     <p>
-        <img src="lib/the-guide-styles/img/ing_thumb.jpeg"> {{question.question}}</img>
+        <img src="lib/the-guide-styles/img/ing_thumb.jpeg">shitzu {{question.question}}</img>
     </p>
+
     <div class="l-pb-2">
-      <input ng-model="question.userInput" ng-keypress="$event.keyCode == 13 && ask()" class="input l-w-100" ng-focus/>
+      <input autofocus ng-model="question.userInput" ng-keypress="$event.keyCode == 13 && ask()" class="input l-w-100" />
     </div>
   </div>
+
   <div class="h-inline-block">
-    <a class="btn btn-md btn-default l-mr-2" ng-click="reset()">I feel Lucky</a>
-    <a class="btn btn-md btn-primary" ng-click="ask()">Ask it</a>
+    <a class="btn btn-md btn-primary l-mr-2" ng-click="ask()">Vraag het</a>
+    <a class="btn btn-md btn-default" ng-click="reset()">Opnieuw</a>
   </div>
 </div>
