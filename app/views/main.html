@@ -1,17 +1,18 @@
-<div class="h-text-center" style="position: absolute; bottom: 20%; width: 100%">
+<div class="h-text-center" style="width: 100%">
 
-
-
-
-  <div ng-repeat="answer in model.answers" class>
-    <div class="panel panel-bordered h-bg-b l-w-60 h-text-left h-float-left">
+ <div ng-repeat="answer in model.answers" class>
+    <div class="panel panel-shadow-a h-bg-b l-w-60 h-text-left h-float-left">
       <div class="panel-body">
         <p>
           {{answer.question}}</img>
         </p>
       </div>
     </div>
+
     <div ng-if="answer.userInput" class="panel panel-bordered l-w-60 h-text-right h-float-right">
+
+    <div class="panel panel-shadow-a l-w-60 h-text-right h-float-right">
+
       <div class="panel-body">
         <p>
           <em>{{answer.userInput}}</em>
@@ -20,8 +21,8 @@
     </div>
   </div>
   <div ng-repeat="question in model.questions" class="row" ng-if="$first || model.questions[$index - 1].done">
-    <div class="panel panel-bordered h-bg-b l-w-60 h-text-left h-float-left">
-      <div class="panel-body">
+    <div class="">
+      <div class="">
         <p>
           {{question.question}}
         </p>
@@ -31,7 +32,7 @@
     <div class="panel h-clearfix">
       <div class="panel-body">
         <p ng-if="!question.done" style="position: relative;">
-          <input autofocus ng-model="question.userInput" ng-keydown="question.warning = undefined" ng-keypress="$event.keyCode == 13 && ask()" class="input l-w-100" />
+          <input ng-model="question.userInput" ng-keydown="question.warning = undefined" ng-keypress="$event.keyCode == 13 && ask()" class="input l-w-100" />
           <span ng-if="question.warning" style="position: absolute; right: 2px;">{{question.warning}}</span>
         </p>
         <div ng-if="question.done" class="panel panel-bordered l-w-60 h-text-right h-float-right">
