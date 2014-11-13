@@ -34,14 +34,21 @@ angular.module('askingWebApp')
           $scope.model.answers.push(question);
         });
 
-        // Add the new questions to the question queue
-        $scope.model.questions = response.questions;
+        // Add the new questions to the question queue, or directly to the answer queue if the don't have a parameter name
+        angular.forEach(response.questions, function(question) {
+          if (question.parameterName) {
+            $scope.model.questions.push(question);
+          } else if(question.question) {
+            $scope.model.answers.push(question);
+          }
+        });
+      }
 
-        if (response.contextUrl) {
-          askingResource = $resource(response.contextUrl);
-        }
+      if (response.contextUrl) {
+        askingResource = $resource(response.contextUrl);
+      }
 
-      } else if (response.contextUrl) {
+      if (angular.isEmpty($scope.model.questions)) {
         $resource(response.contextUrl).get(newQuestionsProcessor);
       }
     }
