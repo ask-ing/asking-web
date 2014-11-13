@@ -4,6 +4,7 @@ angular.module('askingWebApp')
       restrict: 'A',
       link: function ($scope, elem, attrs) {
         elem.focus();
+        $(window).scrollTo(0, '100%');
       }
     };
   });
