@@ -6,42 +6,32 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!-- build:css(.) styles/vendor.css -->
-    <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
-    <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
-  </head>
+    <link rel="stylesheet" href="lib/the-guide-styles/css/the-guide-styles-responsive.css">
   <body ng-app="askingWebApp" class="tg">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div>
-
-
-        <header class="full-cover h-bg-k l-pt-1 l-pb-1" >
-            <div class="container">
-              <div class="h-float-left">
-                <i class="icon icon-lg icon-white icon-ing-logo-ing"></i>
-                <i class="icon icon-lg icon-ing-logo-lion icon-white"></i>
+        <header class="full-cover l-pt-5" >
+            <div class="container h-text-center">
+                <i class="icon icon-blue icon-ing-logo-ing icon-xxmg"></i>
+                <i class="icon icon-orange icon-ing-logo-lion icon-xxmg"></i>
               </div>
             </div>
         </header>
 
-        <main class="container h-bg-b">
+        <main class="container">
             <div ng-view=""></div>
         </main>
 
-        <footer class="footer">
-            <p><span ></span> from the Ask ING team</p>
+        <footer class="footer footer-primary is-docked">
+            <p>from the Ask ING team</p>
         </footer>
-
-    </div>
 
 
     <!-- build:js(.) scripts/oldieshim.js -->

@@ -1,10 +1,17 @@
-<div class="jumbotron">
-  <h1>Ask ING</h1>
+<div class="h-text-center">
+  <div class="l-pb-2">
+    <input ng-model="question.userInput" ng-keypress="$event.keyCode == 13 && ask()" class="input l-w-100" ng-focus/>
+  </div>
+  <div class="h-inline-block">
+    <a class="btn btn-md btn-default l-mr-2" ng-click="reset()">I feel Lucky</a>
+    <a class="btn btn-md btn-primary" ng-click="ask()">Ask it</a>
+  </div>
+
   <div ng-repeat="answer in model.answers">
-    <p class="panel h-float-right">
+    <p class="panel panel-bordered">
       {{answer.question}}
     </p>
-    <p class="panel h-float-left">
+    <p class="panel panel-bordered">
       <em>{{answer.userInput}}</em>
     </p>
   </div>
@@ -12,10 +19,4 @@
     <p>
       {{question.question}}
     </p>
-    <p><input ng-model="question.userInput" ng-keypress="$event.keyCode == 13 && ask()" /></p>
-  </div>
-  <p>
-    <a class="btn btn-lg btn-default" ng-click="reset()">Opnieuw!</a>
-    <a class="btn btn-lg btn-primary" ng-click="ask()">Hup!</a>
-  </p>
 </div>
