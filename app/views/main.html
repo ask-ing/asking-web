@@ -1,4 +1,4 @@
-<header class="full-cover l-p-1 h-bg-b" ng-if="model.answers[0]">
+<header class="full-cover l-p-1 h-bg-b" style="position:fixed; top:0; left:0; width:100%;z-index:100;" ng-if="model.answers[0]">
   <div class="container">
       <i class="icon icon-blue icon-ing-logo-ing icon-md"></i>
       <i class="icon icon-orange icon-ing-logo-lion icon-md"></i>
@@ -6,30 +6,29 @@
   </div>
 </header>
 
-
-        <header class="full-cover l-mt-5" style="" ng-if="!model.answers[0]" >
-            <div class="container h-text-center">
-                <i class="icon icon-blue icon-ing-logo-ing icon-mg"></i>
-                <i class="icon icon-orange icon-ing-logo-lion icon-mg"></i>
-              </div>
-            </div>
-        </header>
+<header class="full-cover l-mt-5 l-pb-0" ng-if="!model.answers[0]" >
+    <div class="container h-text-center">
+        <i class="icon icon-blue icon-ing-logo-ing icon-mg"></i>
+        <i class="icon icon-orange icon-ing-logo-lion icon-mg"></i>
+      </div>
+    </div>
+</header>
 
 
 <div class="container l-mt-5">
-  <div class="col-md-10 col-md-offset-1" style="height: 100%">
+  <div class="col-md-10 col-md-offset-1 l-mt-5 l-mb-5 l-pb-5"  >
     <div class="h-text-center" style="width: 100%">
-      <p ng-if="!model.answers[0]">
+      <p ng-if="!model.answers[0]" >
         {{model.questions[0].question}}
       </p>
 
      <div ng-repeat="answer in model.answers" class>
         <div class="panel panel-shadow-a h-bg-b l-w-60 h-text-left h-float-left">
           <div class="panel-body">
-            <p>
+            <p class="l-mb-1">
               {{answer.question}}
             </p>
-            <p ng-if="answer.url">
+            <p ng-if="answer.url" class="l-mb-1">
              Voor meer informatie klik <a href="{{answer.url}}" target="_blank">hier.</a>
             </p>
           </div>
@@ -38,7 +37,7 @@
         <div ng-if="answer.userInput"class="panel panel-shadow-a l-w-60 h-text-right h-float-right">
 
           <div class="panel-body">
-            <p>
+            <p class="l-mb-1">
               <em>{{answer.userInput}}</em>
             </p>
           </div>
@@ -52,29 +51,23 @@
           </div>
         </div>
 
-        <div class="panel h-clearfix">
-          <div class="panel-body">
-            <p ng-if="!question.done" style="position: relative;">
-              <input ng-model="question.userInput" ng-keydown="question.warning = undefined" ng-keypress="$event.keyCode == 13 && ask()" class="input l-w-100" />
-              <span ng-if="question.warning" style="position: absolute; right: 2px;">{{question.warning}}</span>
-            </p>
-
-            <div ng-if="question.done" class="panel panel-bordered l-w-60 h-text-right h-float-right">
-              <div class="panel-body">
-                <p>
-                  <em>{{question.userInput}}</em>
-                </p>
-              </div>
+        <div ng-class="{'navbar-fixed-bottom h-bg-b l-p-1' : model.answers[0]}">
+            <div >
+              <p>
+                <input ng-model="question.userInput" ng-keydown="question.warning = undefined" ng-keypress="$event.keyCode == 13 && ask()" class="input l-w-100" style="max-width:600px" />
+                <span ng-if="question.warning" style="position: absolute; right: 2px;">{{question.warning}}</span>
+              </p>
             </div>
 
-          </div>
+            <div class="h-inline-block h-clearfix h-clearfloat">
+              <a class="btn btn-md btn-primary l-mr-2" ng-click="ask()">Vraag het</a>
+              <a class="btn btn-md btn-default" ng-click="reset()">Opnieuw</a>
+            </div>
+
         </div>
       </div>
 
-      <div class="h-inline-block h-clearfix h-clearfloat">
-        <a class="btn btn-md btn-primary l-mr-2" ng-click="ask()">Vraag het</a>
-        <a class="btn btn-md btn-default" ng-click="reset()">Opnieuw</a>
-      </div>
+
     </div>
   </div>
 </div>
