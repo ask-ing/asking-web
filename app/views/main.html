@@ -26,7 +26,11 @@
      <div ng-repeat="answer in model.answers" class>
         <div class="panel panel-shadow-a h-bg-b l-w-60 h-text-left h-float-left">
           <div class="panel-body">
-            <p ng-bind-html="answer.question">
+            <p>
+              {{answer.question}}
+            </p>
+            <p ng-if="answer.url">
+             Voor meer informatie klik <a href="{{answer.url}}">hier.</a>
             </p>
           </div>
         </div>
