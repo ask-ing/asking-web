@@ -81,7 +81,7 @@ module.exports = function (grunt) {
                 '/bower_components',
                 connect.static('./bower_components')
               ),
-              connect.static(appConfig.app)
+              connect.static(appConfig.dist)
             ];
           }
         }
@@ -97,7 +97,7 @@ module.exports = function (grunt) {
                 '/bower_components',
                 connect.static('./bower_components')
               ),
-              connect.static(appConfig.app)
+              connect.static(appConfig.dist)
             ];
           }
         }
@@ -320,6 +320,16 @@ module.exports = function (grunt) {
           cwd: 'bower_components/bootstrap/dist',
           src: 'fonts/*',
           dest: '<%= yeoman.dist %>'
+        }, {
+          expand: true,
+          cwd: 'bower_components/the-guide-styles',
+          src: 'fonts/**/*',
+          dest: '<%= yeoman.dist %>'
+        }, {
+          expand: true,
+          cwd: 'bower_components/the-guide-styles/css',
+          src: '*',
+          dest: '<%= yeoman.dist %>/styles'
         }]
       },
       styles: {
