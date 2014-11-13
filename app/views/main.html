@@ -1,4 +1,4 @@
-<header class="full-cover l-p-1 h-bg-b" ng-if="question.userInput">
+<header class="full-cover l-p-1 h-bg-b" ng-if="model.answers[0]">
   <div class="container">
       <i class="icon icon-blue icon-ing-logo-ing icon-md"></i>
       <i class="icon icon-orange icon-ing-logo-lion icon-md"></i>
@@ -7,7 +7,7 @@
 </header>
 
 
-        <header class="full-cover l-mt-5" style="" ng-if="!question.userInput" >
+        <header class="full-cover l-mt-5" style="" ng-if="!model.answers[0]" >
             <div class="container h-text-center">
                 <i class="icon icon-blue icon-ing-logo-ing icon-mg"></i>
                 <i class="icon icon-orange icon-ing-logo-lion icon-mg"></i>
@@ -16,14 +16,17 @@
         </header>
 
 
-<div class="container">
+<div class="container l-mt-5">
   <div class="col-md-10 col-md-offset-1" style="height: 100%">
     <div class="h-text-center" style="width: 100%">
+      <p ng-if="!model.answers[0]">
+        {{model.questions[0].question}}
+      </p>
+
      <div ng-repeat="answer in model.answers" class>
         <div class="panel panel-shadow-a h-bg-b l-w-60 h-text-left h-float-left">
           <div class="panel-body">
-            <p>
-              {{answer.question}}</img>
+            <p ng-bind-html="answer.question">
             </p>
           </div>
         </div>
@@ -38,10 +41,9 @@
         </div>
       </div>
       <div ng-repeat="question in model.questions" class="row" ng-if="$first || model.questions[$index - 1].done">
-        <div class="">
-          <div class="">
-            <p>
-              {{question.question}}
+        <div ng-if="model.answers[0]" class="panel panel-shadow-a h-bg-b l-w-60 h-text-left h-float-left">
+          <div class="panel-body">
+            <p ng-bind-html="question.question">
             </p>
           </div>
         </div>
