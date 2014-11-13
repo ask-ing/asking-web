@@ -51,7 +51,7 @@ angular.module('askingWebApp')
       }
 
       if (!$scope.model.questions.length) {
-        $resource(response.contextUrl).get(newQuestionsProcessor);
+        getAskingResource().get(newQuestionsProcessor);
       }
     }
 
