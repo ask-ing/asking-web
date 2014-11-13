@@ -55,7 +55,7 @@ angular.module('askingWebApp')
         warning = false;
 
       angular.forEach(questions, function(question) {
-        question.warning = question.regexForAnswerGivenByCustomer && !/.+/.match(question.userInput);
+        question.warning = question.regexForAnswerGivenByCustomer && (question.userInput + '').match(question.regexForAnswerGivenByCustomer);
         if (!question.warning) {
           validatedParams[question.parameterName || 'query'] = question.userInput;
         } else {
@@ -64,7 +64,7 @@ angular.module('askingWebApp')
       });
 
       if (!warning) {
-        askingResource.save(null, $.param(validatedParams), newQuestionsProcessor);
+        getAskingResource().save(null, $.param(validatedParams), newQuestionsProcessor);
       }
     };
 
