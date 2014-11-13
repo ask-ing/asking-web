@@ -2,7 +2,7 @@
   <div ng-repeat="answer in model.answers">
     <div class="panel panel-bordered">
       <p>
-        {{answer.question}}
+        <img src="lib/the-guide-styles/img/ing_thumb.jpeg"> {{answer.question}}</img>
       </p>
       <p>
         <em>{{answer.userInput}}</em>
@@ -11,7 +11,7 @@
   </div>
   <div ng-repeat="question in model.questions">
     <p>
-      {{question.question}}
+        <img src="lib/the-guide-styles/img/ing_thumb.jpeg"> {{question.question}}</img>
     </p>
     <div class="l-pb-2">
       <input ng-model="question.userInput" ng-keypress="$event.keyCode == 13 && ask()" class="input l-w-100" ng-focus/>
