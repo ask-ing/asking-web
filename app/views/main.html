@@ -54,7 +54,7 @@
         <div ng-class="{'navbar-fixed-bottom h-bg-b l-p-1' : model.answers[0]}">
             <div >
               <p>
-                <input ng-model="question.userInput" ng-keydown="question.warning = undefined" ng-keypress="$event.keyCode == 13 && ask()" class="input l-w-100" style="max-width:600px" />
+                <input ng-model="question.userInput" ng-keydown="question.warning = undefined" ng-keypress="$event.keyCode == 13 && ask()" class="input l-w-100" style="max-width:600px" ing-focus />
                 <span ng-if="question.warning" style="position: absolute; right: 2px;">{{question.warning}}</span>
               </p>
             </div>
