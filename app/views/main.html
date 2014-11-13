@@ -1,4 +1,13 @@
 <div class="h-text-center">
+
+  <div class="l-pb-2">
+    <input ng-model="question.userInput" ng-keypress="$event.keyCode == 13 && ask()" class="input l-w-100"/>
+  </div>
+  <div class="h-inline-block">
+    <a class="btn btn-md btn-primary l-mr-2" ng-click="ask()">Vraag het</a>
+    <a class="btn btn-md btn-default" ng-click="reset()">Opnieuw</a>
+  </div>
+
   <div ng-repeat="answer in model.answers">
     <div class="panel panel-bordered">
       <p>
