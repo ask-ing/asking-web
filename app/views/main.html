@@ -3,8 +3,8 @@
     <input ng-model="question.userInput" ng-keypress="$event.keyCode == 13 && ask()" class="input l-w-100" ng-focus/>
   </div>
   <div class="h-inline-block">
-    <a class="btn btn-md btn-default l-mr-2" ng-click="reset()">I feel Lucky</a>
-    <a class="btn btn-md btn-primary" ng-click="ask()">Ask it</a>
+    <a class="btn btn-md btn-default l-mr-2" ng-click="ask()">Vraag het</a>
+    <a class="btn btn-md btn-default" ng-click="reset()">Opnieuw</a>
   </div>
 
   <div ng-repeat="answer in model.answers">
